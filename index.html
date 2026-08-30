@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Chá de Bebê do Daniel — Convite</title>
+  <meta name="description" content="Chá de Bebê do Daniel — Papai Lukas e Mamãe Carol convidam você.">
+  <style>
+    :root{
+      --red:#ff4757;
+      --blue:#2f80ed;
+      --yellow:#ffd93d;
+      --green:#2ecc71;
+      --bg:#fff8f3;
+      --card:#ffffff;
+      --muted:#555;
+      --glass: rgba(255,255,255,0.6);
+      --radius:14px;
+      --accent-shadow: 0 8px 18px rgba(47,128,237,0.14);
+      --radius-sm:10px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(135deg,var(--bg), #fff); 
+      display:flex;align-items:center;justify-content:center;padding:24px;
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .container{
+      width:100%;max-width:980px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.97));
+      border-radius:20px;padding:28px;box-shadow:0 10px 30px rgba(10,10,10,0.08);overflow:hidden;
+      border: 6px solid transparent; /* decorative border space */
+      background-clip: padding-box;
+      position:relative;
+    }
+
+    /* Festive corner accents */
+    .corner-pill{
+      position:absolute;width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;color:white;font-weight:700;box-shadow:0 6px 16px rgba(0,0,0,0.12)
+    }
+    .corner-pill.one{top:12px;left:12px;background:linear-gradient(135deg,var(--red),var(--yellow))}
+    .corner-pill.two{top:12px;right:12px;background:linear-gradient(135deg,var(--blue),var(--green))}
+    .corner-pill.three{bottom:12px;left:12px;background:linear-gradient(135deg,var(--green),var(--red))}
+    .corner-pill.four{bottom:12px;right:12px;background:linear-gradient(135deg,var(--yellow),var(--blue))}
+
+    header{display:flex;align-items:center;gap:20px}
+    .badge{
+      width:92px;height:92px;border-radius:18px;background:linear-gradient(135deg,var(--red),var(--blue));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:28px;box-shadow:var(--accent-shadow)
+    }
+    h1{margin:0;font-size:28px;line-height:1.05}
+    p.lead{margin:4px 0 0;color:var(--muted)}
+
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:22px;margin-top:22px}
+
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 8px 18px rgba(44,62,80,0.06)}
+    .card h3{margin:0 0 10px}
+    .details-list{display:grid;gap:8px}
+    .chip{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,rgba(0,0,0,0.03),rgba(0,0,0,0.02));font-weight:600}
+
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;border:0;cursor:pointer;background:white;font-weight:700;transition:transform .18s ease,box-shadow .18s ease;box-shadow:0 8px 18px rgba(2,6,23,0.06)}
+    .btn:active{transform:translateY(1px)}
+
+    /* Colored CTA buttons */
+    .btn.red{background:linear-gradient(90deg,var(--red),#ff7b85);color:white}
+    .btn.blue{background:linear-gradient(90deg,var(--blue),#5aa6ff);color:white}
+    .btn.yellow{background:linear-gradient(90deg,var(--yellow),#ffe27d);color:#222}
+    .btn.green{background:linear-gradient(90deg,var(--green),#5fe38b);color:white}
+
+    .btn:hover{transform:translateY(-6px);box-shadow:0 18px 30px rgba(2,6,23,0.12)}
+
+    form{display:grid;gap:10px}
+    input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(2,6,23,0.06);font-size:15px}
+    textarea{min-height:100px;resize:vertical}
+
+    .small{font-size:14px;color:var(--muted)}
+    .muted{color:#666}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-weight:600}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr;}
+      .badge{width:78px;height:78px;font-size:22px}
+    }
+
+    /* Decorative tiles influenced by playful game aesthetic */
+    .tiles{display:flex;gap:10px;margin-top:14px}
+    .tile{flex:1;padding:12px;border-radius:12px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,0.7),rgba(255,255,255,0.9));border:2px solid rgba(0,0,0,0.03);font-weight:700}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,10,10,0.4);z-index:1000}
+    .modal.show{display:flex}
+    .modal .panel{background:white;padding:20px;border-radius:12px;max-width:820px;width:94%;max-height:86vh;overflow:auto}
+
+    .toast{position:fixed;right:20px;bottom:20px;background:#111;color:white;padding:12px 16px;border-radius:10px;box-shadow:0 8px 18px rgba(0,0,0,0.2)}
+
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <div class="corner-pill one">🎉</div>
+    <div class="corner-pill two">💌</div>
+    <div class="corner-pill three">📍</div>
+    <div class="corner-pill four">✅</div>
+
+    <header>
+      <div class="badge">D</div>
+      <div>
+        <h1>Chá de Bebê do Daniel</h1>
+        <p class="lead">Papai Lukas e Mamãe Carol convidam você</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="detalhes">
+        <h3 id="detalhes">Detalhes do evento</h3>
+        <div class="details-list">
+          <div class="chip">📅 <strong id="data">--/--/----</strong></div>
+          <div class="chip">⏰ <strong id="hora">--:--</strong></div>
+          <div style="margin-top:6px">📍 <strong id="local">Local do evento</strong></div>
+          <div class="small muted" id="endereco">Endereço aqui, Cidade, Estado</div>
+
+          <div style="margin-top:8px">
+            <strong>Presentes</strong>
+            <p class="small muted">Lista de sugestões: roupinhas, fraldas, itens de higiene ou contribuições para o enxoval. (Opcional: link para lista de presentes)</p>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="btn-row">
+          <a id="mailto" class="btn yellow" href="mailto:daniel.dortocesca@gmail.com?subject=Mensagem%20para%20o%20Daniel">💌 Enviar mensagem</a>
+
+          <a id="mapsBtn" class="btn blue" target="_blank" rel="noopener noreferrer">📍 Ver no Google Maps</a>
+
+          <a id="wazeBtn" class="btn green" target="_blank" rel="noopener noreferrer">🗺️ Abrir no Waze</a>
+
+        </div>
+
+        <div style="margin-top:14px" class="tiles">
+          <div class="tile" style="background:linear-gradient(180deg,rgba(255,120,120,0.14),rgba(255,120,120,0.06))">🎈 Festa</div>
+          <div class="tile" style="background:linear-gradient(180deg,rgba(80,160,255,0.12),rgba(80,160,255,0.04))">🍰 Bolo</div>
+          <div class="tile" style="background:linear-gradient(180deg,rgba(255,220,90,0.12),rgba(255,220,90,0.04))">🎁 Presentes</div>
+        </div>
+
+      </section>
+
+      <aside class="card" aria-labelledby="rsvp">
+        <h3 id="rsvp">Confirme sua presença</h3>
+        <p class="small muted">Preencha abaixo. O sistema evita confirmações duplicadas pelo mesmo e-mail.</p>
+
+        <form id="rsvpForm" autocomplete="on">
+          <label class="small">Nome</label>
+          <input id="nome" name="nome" placeholder="Seu nome" required>
+
+          <label class="small">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="seu@exemplo.com" required>
+
+          <label class="small">Quantidade de pessoas</label>
+          <select id="qtd" name="qtd">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4+</option>
+          </select>
+
+          <label class="small">Mensagem (opcional)</label>
+          <textarea id="mensagem" name="mensagem" placeholder="Deixe seu carinho"></textarea>
+
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button type="submit" class="btn red">✅ Confirmar presença</button>
+            <button id="limpar" type="button" class="btn" style="background:transparent;border:2px dashed rgba(0,0,0,0.06)">🧹 Limpar</button>
+          </div>
+        </form>
+
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:space-between">
+          <button id="exportBtn" class="btn blue">📥 Exportar lista</button>
+          <button id="verListaBtn" class="btn yellow">📋 Ver lista (senha)</button>
+        </div>
+
+        <p class="small muted" style="margin-top:12px">Observação: os dados ficam armazenados localmente no seu navegador até que você faça backup/exporte. Use a senha para acessar a lista: <strong>S@arah@0411</strong></p>
+
+      </aside>
+    </div>
+
+    <footer>
+      <p>Com carinho, Lukas &amp; Carol 💕</p>
+    </footer>
+  </div>
+
+  <!-- Modal para exibir/exportar lista -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Lista de confirmações</h3>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button id="downloadCsv" class="btn green">⬇️ Baixar CSV</button>
+          <button id="copyBtn" class="btn yellow">📋 Copiar</button>
+          <button id="closeModal" aria-label="Fechar" class="btn">✖</button>
+        </div>
+      </div>
+      <div id="listaContent" style="margin-top:12px;white-space:pre-wrap;font-family:monospace;max-height:60vh;overflow:auto"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" style="display:none"></div>
+
+  <script>
+    // ====== Configuráveis (edite conforme necessário) ======
+    const CONFIG = {
+      date: '10/10/2026',
+      time: '15:00',
+      place: 'Salão de Festas Alegria',
+      address: 'Rua Exemplo, 123 - Bairro, Cidade - Estado',
+      mail: 'daniel.dortocesca@gmail.com',
+      exportPassword: 'S@arah@0411'
+    };
+
+    // Init UI
+    document.getElementById('data').textContent = CONFIG.date;
+    document.getElementById('hora').textContent = CONFIG.time;
+    document.getElementById('local').textContent = CONFIG.place;
+    document.getElementById('endereco').textContent = CONFIG.address;
+
+    document.getElementById('mailto').href = 'mailto:' + encodeURIComponent(CONFIG.mail) + '?subject=' + encodeURIComponent('Mensagem para o Daniel');
+
+    function mapsLinkFor(address){
+      return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(address);
+    }
+    function wazeLinkFor(address){
+      // universal Waze web link (works from mobile/desktop redirect)
+      return 'https://waze.com/ul?q=' + encodeURIComponent(address);
+    }
+    document.getElementById('mapsBtn').href = mapsLinkFor(CONFIG.address);
+    document.getElementById('wazeBtn').href = wazeLinkFor(CONFIG.address);
+
+    // ====== RSVP storage & logic (localStorage) ======
+    const KEY = 'cha_bebe_rsvps_v1';
+    function readList(){
+      try{ return JSON.parse(localStorage.getItem(KEY) || '[]'); }catch(e){return []}
+    }
+    function writeList(list){ localStorage.setItem(KEY, JSON.stringify(list)); }
+
+    function showToast(msg, ms=2500){
+      const t = document.getElementById('toast'); t.textContent = msg; t.style.display='block';
+      setTimeout(()=>{ t.style.display='none'; }, ms);
+    }
+
+    const form = document.getElementById('rsvpForm');
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim().toLowerCase();
+      const qtd = document.getElementById('qtd').value;
+      const mensagem = document.getElementById('mensagem').value.trim();
+      if(!email || !nome){ showToast('Por favor preencha nome e e-mail'); return; }
+
+      const list = readList();
+      const exists = list.find(item=>item.email === email);
+      if(exists){ showToast('E-mail já confirmado. Obrigado!'); return; }
+
+      const entry = {nome, email, qtd, mensagem, created: new Date().toISOString()};
+      list.push(entry);
+      writeList(list);
+      showToast('Confirmação registrada. 🎉');
+      form.reset();
+    });
+
+    document.getElementById('limpar').addEventListener('click', ()=>{ form.reset(); showToast('Formulário limpo'); });
+
+    // ===== Export / view list (senha protegida) =====
+    const modal = document.getElementById('modal');
+    const listaContent = document.getElementById('listaContent');
+    function renderList(list){
+      if(!list.length) return 'Nenhuma confirmação encontrada.';
+      const lines = list.map((r,i)=>`${i+1}. ${r.nome} | ${r.email} | Pessoas: ${r.qtd} | ${r.mensagem || '-'} | ${new Date(r.created).toLocaleString()}`);
+      return lines.join('\n');
+    }
+
+    function askPasswordAndShow(){
+      const pwd = prompt('Insira a senha para ver/exportar a lista:');
+      if(pwd === null) return; // cancel
+      if(pwd === CONFIG.exportPassword){
+        const list = readList();
+        listaContent.textContent = renderList(list);
+        modal.classList.add('show'); modal.setAttribute('aria-hidden','false');
+      } else {
+        alert('Senha incorreta.');
+      }
+    }
+
+    document.getElementById('verListaBtn').addEventListener('click', askPasswordAndShow);
+    document.getElementById('exportBtn').addEventListener('click', askPasswordAndShow);
+
+    document.getElementById('closeModal').addEventListener('click', ()=>{ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); });
+    modal.addEventListener('click', (ev)=>{ if(ev.target === modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); } });
+
+    // Download CSV
+    function toCsv(list){
+      const rows = [['Nome','Email','Pessoas','Mensagem','Data']];
+      list.forEach(r=>rows.push([r.nome, r.email, r.qtd, (r.mensagem||''), r.created]));
+      return rows.map(r=>r.map(cell=>`"${String(cell).replace(/"/g,'""')}"`).join(',')).join('\n');
+    }
+    document.getElementById('downloadCsv').addEventListener('click', ()=>{
+      const list = readList();
+      const csv = toCsv(list);
+      const blob = new Blob([csv], {type: 'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'rsvps_daniel.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', ()=>{
+      const list = readList();
+      const txt = renderList(list);
+      navigator.clipboard?.writeText(txt).then(()=>{ showToast('Lista copiada para a área de transferência'); }).catch(()=>{ alert('Não foi possível copiar automaticamente. Selecione e copie manualmente.'); });
+    });
+
+    // Small enhancement: update map links if someone edits the displayed address in DOM (editable in future)
+    const enderecoEl = document.getElementById('endereco');
+    // If address is edited programmatically, refresh links
+    const observer = new MutationObserver(()=>{
+      const addr = enderecoEl.textContent || CONFIG.address;
+      document.getElementById('mapsBtn').href = mapsLinkFor(addr);
+      document.getElementById('wazeBtn').href = wazeLinkFor(addr);
+    });
+    observer.observe(enderecoEl, {childList:true,characterData:true,subtree:true});
+
+    // Gentle entrance animations
+    window.setTimeout(()=>{ document.querySelectorAll('.card, header').forEach((el,i)=>{ el.style.opacity=1; el.style.transform='translateY(0)'; }); },120);
+
+  </script>
+</body>
+</html>
